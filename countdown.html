@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #countdown {
+      font-size: 36px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="countdown">10:00</div>
+
+<script>
+  // Set the initial time in seconds
+  let timeInSeconds = 600; // 10 minutes
+
+  // Update the countdown every second
+  const countdownInterval = setInterval(updateCountdown, 1000);
+
+  function updateCountdown() {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+
+    const formattedTime = padZero(minutes) + ':' + padZero(seconds);
+
+    document.getElementById('countdown').innerHTML = formattedTime;
+
+    if (timeInSeconds <= 0) {
+      clearInterval(countdownInterval);
+      document.getElementById('countdown').innerHTML = 'Countdown expired';
+    } else {
+      timeInSeconds--;
+    }
+  }
+
+  function padZero(number) {
+    return number < 10 ? '0' + number : number;
+  }
+</script>
+
+</body>
+</html>
